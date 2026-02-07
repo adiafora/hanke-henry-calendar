@@ -1,0 +1,22 @@
+{
+  "name": "adiafora/hanke-henry-calendar",
+  "description": "PHP implementation of the Hanke-Henry Permanent Calendar",
+  "type": "library",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Hhpc\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Hhpc\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "php": "^8.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^10.0"
+  }
+}
