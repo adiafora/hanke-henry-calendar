@@ -2,3 +2,6 @@ vendor/
 .phpunit.result.cache
 .env
 .idea/
+.php-cs-fixer.cache
+.phpstan.result.cache
+.phpunit.cache
