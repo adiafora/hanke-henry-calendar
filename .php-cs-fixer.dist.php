@@ -6,8 +6,10 @@ $finder = (new PhpCsFixer\Finder())
     ->name('*.php');
 
 return (new PhpCsFixer\Config())
+    ->setRiskyAllowed(true)
     ->setRules([
         '@PSR12' => true,
+        'declare_strict_types' => true,
         'array_syntax' => ['syntax' => 'short'],
         'no_unused_imports' => true,
         'ordered_imports' => [

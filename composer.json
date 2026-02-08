@@ -16,7 +16,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "Hhpc\\Tests\\": "tests/"
+      "Tests\\Hhpc\\": "tests/"
     }
   },
   "require": {

@@ -15,3 +15,5 @@ cs:
 
 phpstan:
 	docker-compose exec php vendor/bin/phpstan analyse
+
+ci: cs phpstan test
