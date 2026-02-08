@@ -31,7 +31,7 @@ jobs:
         run: composer install --prefer-dist --no-interaction --no-progress
 
       - name: Check code style
-        run: vendor/bin/php-cs-fixer fix --dry-run --diff --status-error-code
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
 
       - name: Static Analysis
         run: vendor/bin/phpstan analyse
