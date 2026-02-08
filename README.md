@@ -73,13 +73,13 @@ We use Docker and a set of quality assurance tools to maintain high standards.
 
 ```bash
 # Run Unit Tests
-composer test
+make test
 
 # Run Static Analysis (PHPStan)
-composer analyse
+make phpstan
 
 # Fix Code Style (PSR-12)
-composer cs-fix
+make cs
 ```
 
 ## 📄 License
