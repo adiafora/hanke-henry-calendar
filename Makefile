@@ -1,3 +1,9 @@
+build:
+	docker-compose up -d --build
+
+composer:
+	docker-compose exec php composer install
+
 start:
 	docker-compose up -d
 

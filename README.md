@@ -72,6 +72,12 @@ This means you can safely use this library in logistics, financial planning, and
 We use Docker and a set of quality assurance tools to maintain high standards.
 
 ```bash
+# Build docker container
+make build
+
+# Install the dependencies
+make composer
+
 # Run Unit Tests
 make test
 
