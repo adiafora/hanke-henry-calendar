@@ -20,6 +20,6 @@ cs:
 	docker-compose exec php vendor/bin/php-cs-fixer fix
 
 phpstan:
-	docker-compose exec php vendor/bin/phpstan analyse
+	docker-compose exec php vendor/bin/phpstan analyse --memory-limit=512M
 
 ci: cs phpstan test

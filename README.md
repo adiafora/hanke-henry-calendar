@@ -13,7 +13,7 @@ This library provides a robust engine to handle the unique structure of the HHPC
 
 - **Immutable Architecture:** All date objects are immutable, ensuring thread safety and predictable behavior similar to `DateTimeImmutable`.
 - **ISO 8601 Compliance:** Fully aligned with the ISO week date system. Every year starts on Monday, and the Xtra week handling respects the 53-week ISO cycle.
-- **Xtra Week Support:** First-class support for the intercalary "Newton" week (treated programmatically as Month 13).
+- **Xtra Week Support:** First-class support for the intercalary Xtra week (treated programmatically as Month 13).
 - **Zero Dependencies:** Requires only native PHP extensions (`intl`).
 - **Production Ready:** Fully typed (PHP 8.2+), tested, and analyzed with PHPStan (Level 9).
 
@@ -26,33 +26,46 @@ composer require adiafora/hanke-henry-calendar
 ## 🚀 Quick Start
 
 ```php
-use Hhpc\HhpcDate;
+use Adiafora\Hhpc\HhpcDate;
 
 // Create a date from Gregorian
-$date = HhpcDate::fromGregorian(new \DateTimeImmutable('2026-02-07'));
+$date = HhpcDate::fromGregorian(new \DateTimeImmutable('2026-03-27'));
 
 echo $date->format('Y-m-d'); 
-// Output: 2026-02-07 (In HHPC dates align, but days of week are fixed)
+// Output: 2026-03-29
 
-echo $date->getDayName(); 
-// Output: "Saturday" (Every Feb 7th is a Saturday in HHPC)
+echo $date->addDays(3); 
+// 2026-04-01
 ```
 ### Handling the "Xtra" Week (Leap Year)
 
-In the Hanke-Henry calendar, leap years (occurring every 5-6 years) include an extra 7-day week at the end of December. This library represents it as Month 13 for ease of calculation.
+In the Hanke-Henry calendar, leap years (occurring every 5-6 years) include an extra 7-day week at the end of year. This library represents it as Month 13 for ease of calculation.
 
 ```php
+use Adiafora\Hhpc\HhpcDate;
+
 // 2026 is a Leap Year in HHPC
 $endOfYear = HhpcDate::create(2026, 12, 31); // Last day of regular December
 
-$xtraWeek = $endOfYear->addDay();
+$xtraWeek = $endOfYear->addDays();
 
 echo $xtraWeek->format('Y-m-d');
 // Output: 2026-13-01 (1st day of the Xtra week)
 
-echo $xtraWeek->isXtraWeek(); 
+echo $xtraWeek->isXtra(); 
 // Output: true
 ```
+
+## 🧩 Core Entities
+
+The package provides a rich set of immutable objects representing different components of the Hanke-Henry calendar. All entities are located in the `Adiafora\Hhpc\` namespace.
+
+* **`HhpcDate`** — The primary object for working with precise dates, times, formatting, and comparisons.
+* **`HhpcWeek`** — Represents a 7-day week, fully compatible with the ISO week numbering system.
+* **`HhpcMonth`** — Represents a calendar month, handling the fixed 30-day/31-day lengths and the special 13th "Xtra" month.
+* **`HhpcQuarter`** — Represents a 91-day fixed quarter (consisting of two 30-day months and one 31-day month).
+* **`HhpcYear`** — Represents a specific calendar year and provides helpers to check its leap status.
+
 
 ## 📐 Architecture & ISO 8601 Compliance
 
@@ -78,14 +91,8 @@ make build
 # Install the dependencies
 make composer
 
-# Run Unit Tests
-make test
-
-# Run Static Analysis (PHPStan)
-make phpstan
-
-# Fix Code Style (PSR-12)
-make cs
+# Run CI checks
+make ci
 ```
 
 ## 📄 License
